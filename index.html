@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Beaver Bunker | Corvallis, OR</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --orange: #D4521E;
+  --orange-light: #F47B3A;
+  --black: #0D0D0D;
+  --black-2: #1A1A1A;
+  --black-3: #252525;
+  --white: #F5F0EB;
+  --muted: #9A8F85;
+}
+body { background: var(--black); color: var(--white); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; background: rgba(13,13,13,0.97); border-bottom: 1px solid #2a2a2a; position: sticky; top: 0; z-index: 100; }
+.logo { font-size: 20px; font-weight: 600; color: var(--white); }
+.logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { background: var(--orange); color: #fff; border: none; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.ticker { background: var(--orange); padding: 9px 0; overflow: hidden; white-space: nowrap; }
+.ticker-inner { display: inline-block; animation: ticker 22s linear infinite; }
+.ticker span { font-size: 12px; font-weight: 600; color: #fff; margin: 0 36px; letter-spacing: 0.5px; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.hero { position: relative; height: 560px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.75) 100%); }
+.hero-content { position: relative; z-index: 2; padding: 0 32px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; background: rgba(212,82,30,0.25); color: var(--orange-light); border-radius: 999px; padding: 5px 16px; margin-bottom: 20px; border: 1px solid rgba(212,82,30,0.4); font-weight: 600; letter-spacing: 0.5px; }
+.hero h1 { font-size: 58px; font-weight: 700; line-height: 1.1; margin-bottom: 18px; letter-spacing: -2px; color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+.hero h1 span { color: var(--orange); }
+.hero p { font-size: 17px; color: rgba(245,240,235,0.85); max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: var(--orange); color: #fff; border: none; padding: 14px 30px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 14px 30px; border-radius: 6px; font-size: 14px; cursor: pointer; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--black-3); border-bottom: 1px solid #2a2a2a; }
+.stat { padding: 28px 20px; text-align: center; border-right: 1px solid #2a2a2a; }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 32px; font-weight: 700; color: var(--orange); letter-spacing: -1px; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.section { padding: 52px 32px; border-bottom: 1px solid #2a2a2a; }
+.section-dark { background: var(--black-2); }
+.section-tag { font-size: 11px; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+.section h2 { font-size: 30px; font-weight: 700; margin-bottom: 28px; letter-spacing: -1px; color: var(--white); }
+.atm-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; height: 320px; }
+.atm-img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; display: block; }
+.atm-col { display: grid; grid-template-rows: 1fr 1fr; gap: 10px; }
+.games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.game { background: var(--black-3); border: 1px solid #2a2a2a; border-radius: 10px; padding: 18px; }
+.game.featured { border-color: var(--orange); }
+.game-time { font-size: 11px; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.live { background: #A32D2D; color: #fff; font-size: 9px; border-radius: 999px; padding: 2px 7px; font-weight: 700; }
+.game-teams { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.game-league { font-size: 11px; color: var(--muted); }
+.game-screen { font-size: 11px; color: var(--orange-light); margin-top: 8px; }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.menu-item { background: var(--black-3); border: 1px solid #2a2a2a; border-radius: 10px; overflow: hidden; }
+.menu-photo { width: 100%; height: 160px; object-fit: cover; display: block; }
+.menu-body { padding: 16px; }
+.menu-name { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 5px; }
+.menu-desc { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+.menu-price { font-size: 18px; font-weight: 700; color: var(--orange); }
+.hours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.hours-card { background: var(--black-3); border: 1px solid #2a2a2a; border-radius: 10px; padding: 18px; }
+.hours-day { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.hours-time { font-size: 13px; color: var(--muted); }
+.location { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
+.loc-item { font-size: 13px; color: var(--muted); }
+.amenities { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; background: var(--black-3); border: 1px solid #2a2a2a; border-radius: 999px; padding: 6px 14px; color: var(--muted); }
+footer { padding: 36px 32px; text-align: center; border-top: 1px solid #2a2a2a; background: var(--black); }
+.footer-logo { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.footer-logo span { color: var(--orange); }
+footer p { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+@media (max-width: 600px) {
+  nav { padding: 14px 16px; }
+  .nav-links { display: none; }
+  .hero h1 { font-size: 36px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .atm-grid { grid-template-columns: 1fr; height: auto; }
+  .atm-col { display: none; }
+  .section { padding: 36px 16px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Beaver <span>Bunker</span></div>
+  <div class="nav-links">
+    <a href="#games">Games</a>
+    <a href="#menu">Menu</a>
+    <a href="#hours">Hours</a>
+  </div>
+  <button class="nav-cta">Reserve a Spot</button>
+</nav>
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>🦫 GO BEAVS</span>
+    <span>⚡ GAME DAY EVERY DAY</span>
+    <span>🏈 OSU FOOTBALL · ALL GAMES LIVE</span>
+    <span>🍺 HAPPY HOUR 3–6PM DAILY</span>
+    <span>🦫 GO BEAVS</span>
+    <span>⚡ GAME DAY EVERY DAY</span>
+    <span>🏈 OSU FOOTBALL · ALL GAMES LIVE</span>
+    <span>🍺 HAPPY HOUR 3–6PM DAILY</span>
+  </div>
+</div>
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1546622891-02c72c1537b6?w=1400&q=80" alt="Inside the Beaver Bunker" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="badge">📍 Corvallis, Oregon · Beaver Country</div>
+    <h1>The <span>Beaver</span><br>Bunker</h1>
+    <p>Corvallis's home base for OSU Beavers fans. Every game. Every screen. Every cold one you deserve.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Today's Games</button>
+      <button class="btn-secondary">View Menu</button>
+    </div>
+  </div>
+</div>
+<div class="stats">
+  <div class="stat"><div class="stat-num">60+</div><div class="stat-label">HDTVs</div></div>
+  <div class="stat"><div class="stat-num">45</div><div class="stat-label">Beers on tap</div></div>
+  <div class="stat"><div class="stat-num">#1</div><div class="stat-label">OSU bar in Corvallis</div></div>
+  <div class="stat"><div class="stat-num">7</div><div class="stat-label">Days a week</div></div>
+</div>
+<div class="section section-dark">
+  <div class="section-tag">The vibe</div>
+  <h2>Built for fans like you</h2>
+  <div class="atm-grid">
+    <img class="atm-img" src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&q=80" alt="Sports bar crowd" />
+    <div class="atm-col">
+      <img class="atm-img" src="https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?w=400&q=80" alt="Beer on tap" />
+      <img class="atm-img" src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=400&q=80" alt="Sports bar TVs" />
+    </div>
+    <div class="atm-col">
+      <img class="atm-img" src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=400&q=80" alt="Bar drinks" />
+      <img class="atm-img" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&q=80" alt="Bar atmosphere" />
+    </div>
+  </div>
+</div>
+<div class="section" id="games">
+  <div class="section-tag">On the screens tonight</div>
+  <h2>Tonight's lineup</h2>
+  <div class="games-grid">
+    <div class="game featured">
+      <div class="game-time">NOW <span class="live">LIVE</span></div>
+      <div class="game-teams">Oregon State vs. Oregon</div>
+      <div class="game-league">PAC-12 Football</div>
+      <div class="game-screen">Main screen + all TVs</div>
+    </div>
+    <div class="game">
+      <div class="game-time">6:30 PM</div>
+      <div class="game-teams">Lakers vs. Warriors</div>
+      <div class="game-league">NBA</div>
+      <div class="game-screen">Screens 10–18</div>
+    </div>
+    <div class="game">
+      <div class="game-time">8:00 PM</div>
+      <div class="game-teams">Yankees vs. Red Sox</div>
+      <div class="game-league">MLB</div>
+      <div class="game-screen">Screens 19–24</div>
+    </div>
+    <div class="game">
+      <div class="game-time">9:00 PM</div>
+      <div class="game-teams">UFC 312 Main Card</div>
+      <div class="game-league">UFC</div>
+      <div class="game-screen">Screens 25–30</div>
+    </div>
+  </div>
+</div>
+<div class="section section-dark" id="menu">
+  <div class="section-tag">Fuel up</div>
+  <h2>Fan favorites</h2>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <img class="menu-photo" src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=400&q=80" alt="Chicken wings" />
+      <div class="menu-body">
+        <div class="menu-name">Beaver Wings</div>
+        <div class="menu-desc">16 crispy wings — Buffalo, BBQ, Honey Garlic, or Orange Blaze</div>
+        <div class="menu-price">$18</div>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img class="menu-photo" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" alt="Burger" />
+      <div class="menu-body">
+        <div class="menu-name">The Dam Burger</div>
+        <div class="menu-desc">Double smash, pepper jack, caramelized onions, special sauce</div>
+        <div class="menu-price">$15</div>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img class="menu-photo" src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=400&q=80" alt="Nachos" />
+      <div class="menu-body">
+        <div class="menu-name">Loaded Nachos</div>
+        <div class="menu-desc">Pulled pork, queso, jalapeños, pico, sour cream, guac</div>
+        <div class="menu-price">$17</div>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img class="menu-photo" src="https://images.unsplash.com/photo-1630431341973-02e1b662ec35?w=400&q=80" alt="Fries" />
+      <div class="menu-body">
+        <div class="menu-name">Tailgate Fries</div>
+        <div class="menu-desc">Thick-cut fries, smoked cheddar sauce, bacon bits, chives</div>
+        <div class="menu-price">$10</div>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img class="menu-photo" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80" alt="Bar food" />
+      <div class="menu-body">
+        <div class="menu-name">Corvallis Dog</div>
+        <div class="menu-desc">Footlong frank, beer-braised onions, stadium mustard, relish</div>
+        <div class="menu-price">$11</div>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img class="menu-photo" src="https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=400&q=80" alt="Beer pitcher" />
+      <div class="menu-body">
+        <div class="menu-name">Game Day Pitcher</div>
+        <div class="menu-desc">64oz draft — local Oregon craft selections available</div>
+        <div class="menu-price">$20</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section" id="hours">
+  <div class="section-tag">Find us</div>
+  <h2>Hours & location</h2>
+  <div class="hours-grid">
+    <div class="hours-card"><div class="hours-day">Monday – Thursday</div><div class="hours-time">11:00 AM – 12:00 AM</div></div>
+    <div class="hours-card"><div class="hours-day">Friday</div><div class="hours-time">11:00 AM – 2:00 AM</div></div>
+    <div class="hours-card"><div class="hours-day">Saturday</div><div class="hours-time">10:00 AM – 2:00 AM</div></div>
+    <div class="hours-card"><div class="hours-day">Sunday</div><div class="hours-time">10:00 AM – 11:00 PM</div></div>
+  </div>
+  <div class="location">
+    <div class="loc-item">📍 456 SW Monroe Ave, Corvallis, OR 97333</div>
+    <div class="loc-item">📞 (541) 555-0182</div>
+    <div class="loc-item">📸 @beaverbunker</div>
+  </div>
+  <div class="amenities">
+    <span class="tag">📺 60+ screens</span>
+    <span class="tag">🍺 45 beers on tap</span>
+    <span class="tag">📶 Free wifi</span>
+    <span class="tag">🅿️ Free parking</span>
+    <span class="tag">♿ Accessible</span>
+    <span class="tag">🎵 Live DJ game nights</span>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Beaver <span>Bunker</span></div>
+  <p>456 SW Monroe Ave · Corvallis, OR · (541) 555-0182</p>
+  <p>© 2026 Beaver Bunker Sports Bar · Go Beavs 🦫</p>
+</footer>
+</body>
+</html>
